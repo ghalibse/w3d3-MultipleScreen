@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mEditText;
     private Button mButton;
 
-    private  ArrayAdapter<String> arrayAdapter;
+    private  NamesAdapter arrayAdapter;
 
 
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        dataList.addAll(Arrays.asList(mData));
+        dataList.addAll(Arrays.asList(mData));
         mListView = (ListView) findViewById(R.id.lst_view);
 
         mTextView = (TextView) findViewById(R.id.txtView);
@@ -50,11 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        arrayAdapter = new ArrayAdapter<>(
-                this,
-                R.layout.list_item,
-                R.id.l_item_txt,
-                dataList);;
+        arrayAdapter = new NamesAdapter(this, dataList);
 
         mListView.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();
