@@ -9,6 +9,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,37 +25,22 @@ public class MainActivity extends AppCompatActivity {
     private EditText mEditText;
     private Button mButton;
 
-    private  NamesAdapter arrayAdapter;
+    private NamesAdapter arrayAdapter;
 
 
-
-    private String[] mData = {"Chris", "Mike", "Aldo", "Karles", "Libu",
-                                            "Dog", "Pig", "Cats", "Bird", "Cow"};
-
-    private ArrayList<String> dataList = new ArrayList<String>(Arrays.asList(mData));
+    private String jsonString = "{\"students\":[{\"name\":\"Juan\",\"age\":20,\"grade\":8.1},{\"name\":\"Miguel\",\"age\":23,\"grade\":8.3},{\"name\":\"Roberto\",\"age\":39,\"grade\":9.3},{\"name\":\"Luis\",\"age\":19,\"grade\":6.9},{\"name\":\"Gaudencio\",\"age\":25,\"grade\":4.3}]}";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dataList.addAll(Arrays.asList(mData));
         mListView = (ListView) findViewById(R.id.lst_view);
 
-        mTextView = (TextView) findViewById(R.id.txtView);
-        mEditText = (EditText) findViewById(R.id.EditView);
-        mButton = (Button) findViewById(R.id.btn1);
+        Gson gson = new GsonBuilder().create();
+        Result result = gson.fromJson(jsonString, Result.class);
 
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String newName = mEditText.getText().toString();
-                mTextView.setText(newName);
-                dataList.add(newName);
-            }
-        });
-
-        arrayAdapter = new NamesAdapter(this, dataList);
+        arrayAdapter = new NamesAdapter(this, result.students);
 
         mListView.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();

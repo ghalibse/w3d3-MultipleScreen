@@ -1,6 +1,7 @@
 package com.example.simplelist;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by admin on 8/1/2016.
  */
-public class NamesAdapter extends ArrayAdapter<String> {
+public class NamesAdapter extends ArrayAdapter<Student> {
 
-    public NamesAdapter(Context context, ArrayList<String> list) {
+    public NamesAdapter(Context context, List<Student> list) {
         super(context, R.layout.list_item, list);
     }
 
@@ -25,16 +27,16 @@ public class NamesAdapter extends ArrayAdapter<String> {
         LayoutInflater buckysInflater = LayoutInflater.from(getContext());
         View customView = buckysInflater.inflate(R.layout.list_item, parent, false);
 
-        String name = getItem(position);
+        Student aStudent = getItem(position);
         TextView buckysText = (TextView) customView.findViewById(R.id.l_item_txt);
-        ImageView buckysImage = (ImageView) customView.findViewById(R.id.l_item_img);
 
-        char ch = name.toLowerCase().charAt(0);
+        double grade = aStudent.grade;
 
-        if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
-            buckysImage.setImageResource(R.drawable.ic_thumb_up_black_24dp);
-        else buckysImage.setImageResource(R.drawable.ic_thumb_down_black_24dp);
-        buckysText.setText(name);
+        if( grade < 7.0 ) buckysText.setBackgroundColor(Color.RED);
+
+         buckysText.setText((CharSequence) aStudent.toString());
+
         return customView;
     }
+
 }
