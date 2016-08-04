@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SimpleAdapter.iml" filepath="$PROJECT_DIR$/SimpleAdapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/w3-d2-LessThan7.iml" filepath="$PROJECT_DIR$/w3-d2-LessThan7.iml" />
     </modules>
   </component>
 </project>

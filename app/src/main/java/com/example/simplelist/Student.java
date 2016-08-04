@@ -9,8 +9,8 @@ public class Student {
     public long age;
     public double grade;
 
+    @Override
     public String toString() {
-
-        return this.name + " \t" + this.age + " \t" + this.grade;
+        return  name + "  \t" + age + " \t"+ grade;
     }
 }
